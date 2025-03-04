@@ -9,7 +9,7 @@ interface IParams {
 export default async function getReservations(params: IParams) {
   try {
     const { listingId, userId, authorId } =  params;
-    const query: any = {};
+    const query: Record<string,unknown> = {};
     if (listingId) {
       query.listingId = listingId;
     }
@@ -29,7 +29,11 @@ export default async function getReservations(params: IParams) {
       },
     });
     return reservations;
-  } catch (error: any) {
-    throw new Error(error);
+  } catch (error:unknown) {
+    if(error instanceof Error){
+      throw new Error(error.message);
+    }else{
+      throw new Error(String(error));
+    }
   }
 }

@@ -18,7 +18,7 @@ export async function POST(
   if (!listingId || typeof listingId !== "string") {
     throw new Error("Invalid ID");
   }
-  let favoriteIds = [...(currentUser.favoriteIds || [])];
+  const favoriteIds = [...(currentUser.favoriteIds || [])];
   favoriteIds.push(listingId);
   const user = await prisma.user.update({
     where: { id: currentUser.id },

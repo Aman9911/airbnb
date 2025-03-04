@@ -18,6 +18,8 @@ enum STEPS {
   INFO = 2,
 }
 
+type StringifiableValue = string | number | boolean | null | undefined | (string | number | boolean | null | undefined)[];
+
 const SearchModal = () => {
   const searchModal = useSearchModal();
   const router = useRouter();
@@ -50,7 +52,7 @@ const SearchModal = () => {
     if (params) {
       currentQuery = qs.parse(params.toString());
     }
-    const updatedQuery: any = {
+    const updatedQuery: Record<string,StringifiableValue>= {
       ...currentQuery,
       locationValue: location?.value,
       guestCount,

@@ -7,7 +7,7 @@ import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 
-//@ts-ignore
+//@ts-expect-error: Removing default Leaflet icon URL function to override icons
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconUrl: markerIcon.src,
